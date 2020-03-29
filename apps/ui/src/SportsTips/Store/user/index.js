@@ -12,7 +12,8 @@ var reducers = {
 };
 
 const initialState = {
-  theme:"light"
+  game:"Cricket",
+  name:"Guest"
 };
 
 export default createReducer(initialState, reducers);

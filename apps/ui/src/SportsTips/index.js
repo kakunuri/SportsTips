@@ -15,10 +15,9 @@ function SportsTips() {
     <SportsTipsContainer>
       <Header />
       <AppBody>
-        <Router>
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/live-bets" component={LiveBets} />
+            <Route path="/live-betting-tips" component={LiveBets} />
             <Route
               path="/"
               component={() => {
@@ -26,7 +25,6 @@ function SportsTips() {
               }}
             />
           </Switch>
-        </Router>
       </AppBody>
       <Footer />
     </SportsTipsContainer>
