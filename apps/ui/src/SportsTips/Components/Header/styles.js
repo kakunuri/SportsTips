@@ -62,15 +62,15 @@ export const Action = styled.div`
 export const SecondaryLine = styled.div`
   height: 35px;
   background-color: ${({ theme }) => theme.primary}55;
-  color:${({theme})=>theme.background};
+  color: ${({ theme }) => theme.background};
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px 20px;
 `;
 
-export const SportOption=styled.img`
-  margin:0px 30px;
-  height:20px;
-  cursor:pointer;
+export const SportOption = styled.img`
+  margin: 0px 30px;
+  height: 20px;
+  cursor: pointer;
 `;
