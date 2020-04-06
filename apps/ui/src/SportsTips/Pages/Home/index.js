@@ -2,12 +2,21 @@ import React from "react";
 import CarouselPage from "../../Components/CarouselPage";
 import BettingSites from "../../Components/BettingSites";
 import { PrimaryContainer } from "./styles";
+import LiveBettingTips from "./LiveBettingTips";
+import UpcomingMatches from "./UpcomingMatches";
+import News from "./News";
+import { HomeContainer } from "./styles";
 
 export default function Home() {
   return (
-    <PrimaryContainer>
-      <CarouselPage />
-      <BettingSites />
-    </PrimaryContainer>
+    <HomeContainer>
+      <PrimaryContainer>
+        <CarouselPage />
+        <BettingSites />
+      </PrimaryContainer>
+      <LiveBettingTips />
+      <UpcomingMatches />
+      <News />
+    </HomeContainer>
   );
 }
