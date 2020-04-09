@@ -18,7 +18,7 @@ const BettingSiteCard = ({ logo, bonus, rating, join, review }) => {
         {rating}/5
       </Rating>
       <Join href={join}>JOIN</Join>
-      <Reviews>{review}</Reviews>
+      <Reviews href="#">Read Reviews ></Reviews>
     </Card>
   );
 };

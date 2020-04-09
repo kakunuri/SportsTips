@@ -4,5 +4,5 @@ export const BettingScroll = styled.div`
   height: 400px;
   width: 550px;
   overflow-y: scroll;
-  border-style: outset;
+  border: 1px solid #ccc;
 `;

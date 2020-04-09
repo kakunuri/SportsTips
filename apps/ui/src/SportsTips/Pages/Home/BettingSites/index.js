@@ -5,9 +5,26 @@ import BettingSiteCard from "./bettingSiteCard";
 
 export default function BettingSites() {
   const [sites, setSites] = useState([]);
+  function dataPolling() {
+    getBettingSites().then((sitesList) => {
+      setSites(sitesList);
+      setTimeout(() => {
+        dataPolling();
+      }, 1000);
+    });
+  }
+  // });
+
   useEffect(() => {
-    getBettingSites().then((sitesList) => setSites(sitesList));
+    dataPolling();
   }, []);
+
+  // const [sites, setSites] = useState([]);
+  // useEffect(() => {
+  //   getBettingSites().then((sitesList) => {
+  //     setSites(sitesList);
+  //   });
+  // }, []);
   // sites.map((eachSite) => {
   //   console.log(eachSite.logo);
   // });

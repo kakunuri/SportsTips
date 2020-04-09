@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   MDBCarousel,
   MDBCarouselInner,
@@ -7,13 +7,13 @@ import {
   MDBContainer,
 } from "mdbreact";
 import { Container, CarouselImage } from "./styles";
+import { getCarouselImages } from "./service";
 function importAll(r) {
   return r.keys().map(r);
 }
-
 const images = importAll(
   require.context(
-    "../../Resources/carousel-Images",
+    "../../../Resources/carousel-Images",
     false,
     /\.(png|jpe?g|svg)$/
   )
@@ -23,6 +23,20 @@ const images = importAll(
 // import Images from "../../Resources/carousel-Images/IMAGE-1.png";
 
 const CarouselPage = () => {
+  // const [images, setImages] = useState([]);
+  // function dataPolling() {
+  //   getCarouselImages().then((imagesList) => {
+  //     setImages(imagesList);
+  //     setTimeout(() => {
+  //       dataPolling();
+  //     }, 1000);
+  //   });
+  // }
+  // // });
+
+  // useEffect(() => {
+  //   dataPolling();
+  // }, []);
   return (
     <Container>
       <MDBContainer>
@@ -36,33 +50,17 @@ const CarouselPage = () => {
           slide
         >
           <MDBCarouselInner>
-            <MDBCarouselItem itemId="1">
-              <MDBView>
-                <CarouselImage
-                  className="d-block w-100"
-                  src={images[0]}
-                  alt="First slide"
-                />
-              </MDBView>
-            </MDBCarouselItem>
-            <MDBCarouselItem itemId="2">
-              <MDBView>
-                <CarouselImage
-                  className="d-block w-100"
-                  src={images[1]}
-                  alt="Second slide"
-                />
-              </MDBView>
-            </MDBCarouselItem>
-            <MDBCarouselItem itemId="3">
-              <MDBView>
-                <CarouselImage
-                  className="d-block w-100"
-                  src={images[2]}
-                  alt="Third slide"
-                />
-              </MDBView>
-            </MDBCarouselItem>
+            {images.map((eachImage, id) => (
+              <MDBCarouselItem itemId={id + 1}>
+                <MDBView>
+                  <CarouselImage
+                    className="d-block w-100"
+                    src={eachImage}
+                    alt="First slide"
+                  />
+                </MDBView>
+              </MDBCarouselItem>
+            ))}
           </MDBCarouselInner>
         </MDBCarousel>
       </MDBContainer>

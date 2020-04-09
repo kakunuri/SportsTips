@@ -52,13 +52,6 @@ export function getBettingSites() {
         join: "https://betway.com/in/",
         review: null,
       },
-      {
-        logo: "https://seeklogo.com/vector-logo/311018/betway",
-        bonus: "upto 2500INR",
-        rating: "4.5",
-        join: "https://betway.com/in/",
-        review: null,
-      },
     ];
     resolve(mockBettingSites);
   });

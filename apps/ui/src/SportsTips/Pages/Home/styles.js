@@ -10,6 +10,7 @@ export const PrimaryContainer = styled.div`
 `;
 
 export const HomeContainer = styled.div`
+  margin-top:2%
   width: 90%;
   margin-left: 5%;
 `;

@@ -4,15 +4,18 @@ export const Card = styled.div`
   display: flex;
   width: 450px;
   height: 100px;
-  justify-content: space-around;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid;
+  margin-top: 5px;
+  margin-left: 5px;
+  // justify-content: space-around;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 export const Logo = styled.img`
   height: 60px;
   width: 60px;
   background-color: green;
   margin-top: 25px;
-  margin-left: 15px;
+  margin-left: 30px;
 `;
 export const Bonus = styled.div`
   height: 70px;
@@ -21,15 +24,17 @@ export const Bonus = styled.div`
   margin-left: 30px;
 `;
 export const Join = styled.a`
-  height: 30px;
-  width: 80px;
+  height: 35px;
+  width: 90px;
   background-color: #0e0d5c;
   color: white;
+  font-size: 20px;
   text-decoration: none;
   text-align: center;
-  padding-top: 10px;
-  margin-top: 24px;
-  margin-left: 25px;
+  padding-top: 7px;
+  margin-top: 20px;
+  margin-left: 30px;
+  position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 export const Rating = styled.div`
@@ -38,5 +43,8 @@ export const Rating = styled.div`
   margin-top: 24px;
   margin-left: 30px;
 `;
-export const Reviews = styled.div`height:70px
-width:70px`;
+export const Reviews = styled.a`
+  margin-top: 75px;
+  margin-left: -100px;
+  text-decoration: none;
+`;

@@ -1,6 +1,6 @@
 import React from "react";
-import CarouselPage from "../../Components/CarouselPage";
-import BettingSites from "../../Components/BettingSites";
+import CarouselPage from "./CarouselPage";
+import BettingSites from "./BettingSites";
 import { PrimaryContainer } from "./styles";
 import LiveBettingTips from "./LiveBettingTips";
 import UpcomingMatches from "./UpcomingMatches";
