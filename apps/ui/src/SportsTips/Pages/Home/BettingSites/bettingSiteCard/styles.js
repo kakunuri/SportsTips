@@ -11,10 +11,10 @@ export const Card = styled.div`
   // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 export const Logo = styled.img`
-  height: 60px;
-  width: 60px;
+  height: 70px;
+  width: 70px;
   background-color: green;
-  margin-top: 25px;
+  margin-top: 18px;
   margin-left: 30px;
 `;
 export const Bonus = styled.div`

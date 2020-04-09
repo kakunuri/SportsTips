@@ -4,7 +4,7 @@ import { Card, Logo, Bonus, Join, Rating, Reviews } from "./styles";
 const BettingSiteCard = ({ logo, bonus, rating, join, review }) => {
   return (
     <Card>
-      <Logo src=""></Logo>
+      <Logo src="https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg"></Logo>
       <Bonus>
         <b>Bonus</b>
 

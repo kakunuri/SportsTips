@@ -8,35 +8,35 @@ import {
 } from "mdbreact";
 import { Container, CarouselImage } from "./styles";
 import { getCarouselImages } from "./service";
-function importAll(r) {
-  return r.keys().map(r);
-}
-const images = importAll(
-  require.context(
-    "../../../Resources/carousel-Images",
-    false,
-    /\.(png|jpe?g|svg)$/
-  )
-);
+// function importAll(r) {
+//   return r.keys().map(r);
+// }
+// const images = importAll(
+//   require.context(
+//     "../../../Resources/carousel-Images",
+//     false,
+//     /\.(png|jpe?g|svg)$/
+//   )
+// );
 // import Images from "../../Resources/carousel-Images/IMAGE-1.png";
 // import Images from "../../Resources/carousel-Images/IMAGE-1.png";
 // import Images from "../../Resources/carousel-Images/IMAGE-1.png";
 
 const CarouselPage = () => {
-  // const [images, setImages] = useState([]);
-  // function dataPolling() {
-  //   getCarouselImages().then((imagesList) => {
-  //     setImages(imagesList);
-  //     setTimeout(() => {
-  //       dataPolling();
-  //     }, 1000);
-  //   });
-  // }
-  // // });
+  const [images, setImages] = useState([]);
+  function dataPolling() {
+    getCarouselImages().then((imagesList) => {
+      setImages(imagesList);
+      setTimeout(() => {
+        dataPolling();
+      }, 1000);
+    });
+  }
+  // });
 
-  // useEffect(() => {
-  //   dataPolling();
-  // }, []);
+  useEffect(() => {
+    dataPolling();
+  }, []);
   return (
     <Container>
       <MDBContainer>
@@ -55,7 +55,7 @@ const CarouselPage = () => {
                 <MDBView>
                   <CarouselImage
                     className="d-block w-100"
-                    src={eachImage}
+                    src={eachImage.href}
                     alt="First slide"
                   />
                 </MDBView>
