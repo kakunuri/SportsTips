@@ -3,7 +3,7 @@ export function getBettingSites() {
     let mockBettingSites = [
       {
         logo:
-          "https://www.google.com/search?q=bet365+logo&tbm=isch&chips=q:bet365+logo,g_1:vector:dsQZBJk-bqU%3D&hl=en&ved=2ahUKEwiumZKTp9HoAhUf4XMBHWWyCtcQ4lYoA3oECAEQGg&biw=1680&bih=890#imgrc=C93NZ6JCAcNkOM",
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         bonus: "upto 4000INR",
         rating: "4.8",
         join:
@@ -11,42 +11,48 @@ export function getBettingSites() {
         review: null,
       },
       {
-        logo: "https://seeklogo.com/vector-logo/311018/betway",
+        logo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         bonus: "upto 2500INR",
         rating: "4.5",
         join: "https://betway.com/in/",
         review: null,
       },
       {
-        logo: "https://seeklogo.com/vector-logo/311018/betway",
+        logo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         bonus: "upto 2500INR",
         rating: "4.5",
         join: "https://betway.com/in/",
         review: null,
       },
       {
-        logo: "https://seeklogo.com/vector-logo/311018/betway",
+        logo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         bonus: "upto 2500INR",
         rating: "4.5",
         join: "https://betway.com/in/",
         review: null,
       },
       {
-        logo: "https://seeklogo.com/vector-logo/311018/betway",
+        logo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         bonus: "upto 2500INR",
         rating: "4.5",
         join: "https://betway.com/in/",
         review: null,
       },
       {
-        logo: "https://seeklogo.com/vector-logo/311018/betway",
+        logo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         bonus: "upto 2500INR",
         rating: "4.5",
         join: "https://betway.com/in/",
         review: null,
       },
       {
-        logo: "https://seeklogo.com/vector-logo/311018/betway",
+        logo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         bonus: "upto 2500INR",
         rating: "4.5",
         join: "https://betway.com/in/",

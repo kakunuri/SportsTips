@@ -4,7 +4,9 @@ import { Card, Logo, Bonus, Join, Rating, Reviews } from "./styles";
 const BettingSiteCard = ({ logo, bonus, rating, join, review }) => {
   return (
     <Card>
-      <Logo src="https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg"></Logo>
+      <a href={join}>
+        <Logo src={logo}></Logo>
+      </a>
       <Bonus>
         <b>Bonus</b>
 
@@ -18,7 +20,7 @@ const BettingSiteCard = ({ logo, bonus, rating, join, review }) => {
         {rating}/5
       </Rating>
       <Join href={join}>JOIN</Join>
-      <Reviews href="#">Read Reviews ></Reviews>
+      <Reviews to="reviews">Read Reviews ></Reviews>
     </Card>
   );
 };
