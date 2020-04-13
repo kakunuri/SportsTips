@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import colors from "../../colors";
 export const FooterContainer = styled.div`
   height: 50px;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${colors.primary};
   display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  // padding: 0px 20px;
 `;
 export const Social = styled.div`
   display: flex;

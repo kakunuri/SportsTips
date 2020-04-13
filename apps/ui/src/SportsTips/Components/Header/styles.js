@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import colors from "../../colors";
 export const HeaderContainer = styled.div`
-  color: ${({ theme }) => theme.background};
+  color: ${colors.background};
 `;
 
 export const PrimaryLine = styled.div`
   height: 50px;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${colors.primary};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,28 +26,28 @@ export const AppName = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  color: ${({ theme }) => theme.background};
+  color: ${colors.background};
 
   font-size: 18px;
   padding-right: 20px;
   margin-top: 3px;
-  color: ${({ theme }) => theme.background};
+  color: ${colors.background};
   text-decoration: none;
 `;
 export const MenuOptions = styled.div`
-  color: ${({ theme }) => theme.background};
+  color: ${colors.background};
   display: flex;
 `;
 export const NavLinks = styled.div`
   height: 50px;
-  border-right: solid 1px ${({ theme }) => theme.background};
+  border-right: solid 1px ${colors.background};
   display: flex;
   align-items: center;
   padding: 0px 15px;
 `;
 export const NavLink = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.background};
+  color: ${colors.background};
   margin: 0px 20px;
 `;
 export const Actions = styled.div`
@@ -61,8 +62,8 @@ export const Action = styled.div`
 
 export const SecondaryLine = styled.div`
   height: 35px;
-  background-color: ${({ theme }) => theme.primary}55;
-  color: ${({ theme }) => theme.background};
+  background-color: ${colors.primary}55;
+  color: ${colors.background};
   display: flex;
   justify-content: center;
   align-items: center;

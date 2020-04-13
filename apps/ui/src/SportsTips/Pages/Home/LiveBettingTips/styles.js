@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../../colors";
 
 export const LiveBettingTipsContainer = styled.div``;
 export const Header = styled.div`
@@ -23,9 +24,9 @@ export const Logo = styled.div`
   margin-right: 20px;
 `;
 export const ViewAll = styled.div`
-  color: ${({ theme }) => theme.primary};
+  color: ${colors.primary};
 `;
 
 export const BettingTipsSection = styled.div`
-  border: 1px solid ${({theme})=>theme.border};
+  border: 1px solid ${colors.border};
 `;

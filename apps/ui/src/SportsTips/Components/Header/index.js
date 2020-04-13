@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HeaderContainer,
   PrimaryLine,
@@ -12,13 +12,11 @@ import {
   NavLink,
   Actions
 } from "./styles";
-import { Context } from "../../Store";
 import Logo from "../../Resources/appLogo.svg";
 import UserPane from "./UserPane";
 import AllLogo from '../../Resources/all.svg';
 import { getSports } from "./service";
 export default function Header() {
-  let { state } = useContext(Context);
   const [sportsOptions, setSportsOptions] = useState([]);
   useEffect(() => {
     getSports().then(sportsList => {
@@ -26,26 +24,26 @@ export default function Header() {
     });
   }, []);
   return (
-    <HeaderContainer theme={state.theme}>
-      <PrimaryLine theme={state.theme}>
+    <HeaderContainer>
+      <PrimaryLine>
         <Masthead>
           <AppLogo src={Logo} />
-          <AppName theme={state.theme} to="home">
+          <AppName to="home">
             Sports Tips
           </AppName>
         </Masthead>
-        <MenuOptions theme={state.theme}>
+        <MenuOptions>
           <NavLinks>
-            <NavLink theme={state.theme} to="live-betting-tips">
+            <NavLink to="live-betting-tips">
               Live Betting Tips
             </NavLink>
-            <NavLink theme={state.theme} to="betting-tips">
+            <NavLink to="betting-tips">
               Betting Tips
             </NavLink>
-            <NavLink theme={state.theme} to="news">
+            <NavLink to="news">
               News
             </NavLink>
-            <NavLink theme={state.theme} to="stats">
+            <NavLink to="stats">
               Stats
             </NavLink>
           </NavLinks>
@@ -54,7 +52,7 @@ export default function Header() {
           </Actions>
         </MenuOptions>
       </PrimaryLine>
-      <SecondaryLine theme={state.theme}>
+      <SecondaryLine>
         {sportsOptions.length === 0 ? "Loading your sports..." : <SportOption src={AllLogo}/>}
         
         {sportsOptions.map(sportOption => {

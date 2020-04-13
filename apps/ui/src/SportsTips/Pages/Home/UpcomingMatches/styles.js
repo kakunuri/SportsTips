@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../../colors";
 export const UpcomingMatchesContainer = styled.div``;
 export const UpcomingMatchesHeader = styled.div`
   padding: 25px 0px 15px 0px;
@@ -11,7 +12,7 @@ export const Title = styled.div`
   font-size: 18px;
 `;
 export const ViewAll = styled.div`
-  color:${({theme})=>theme.primary}
+  color:${colors.primary}
 `;
 export const MatchCardsContainer = styled.div`
   width: 100%;

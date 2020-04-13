@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   NewsCardContainer,
   NewsImage,
@@ -7,13 +7,11 @@ import {
   ReadMore,
   NewsDate,
 } from "./styles";
-import { Context } from "../../../../Store";
 function NewsCard({ news }) {
-  const { state } = useContext(Context);
   return (
-    <NewsCardContainer theme={state.theme}>
+    <NewsCardContainer>
       <NewsImage src={news.image} />
-      <NewsDetail theme={state.theme}>
+      <NewsDetail>
         <NewsHeadline>{news.name}</NewsHeadline>
         <NewsDate>{news.timestamp}</NewsDate>
         <ReadMore>Read More ></ReadMore>

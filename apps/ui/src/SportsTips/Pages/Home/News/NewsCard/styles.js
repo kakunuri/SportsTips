@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import colors from '../../../../colors';
 
 export const NewsCardContainer = styled.div`
     min-width:calc(25% - 15px);
     max-width:calc(25% - 15px);
-    border:solid 1px ${({theme})=>theme.border};
+    border:solid 1px ${colors.border};
     display:inline-block;
     margin:5px;
 `;
@@ -12,7 +13,7 @@ export const NewsImage = styled.img`
     height:200px;
 `;
 export const NewsDetail = styled.div`
-    color:${({theme})=>theme.text};
+    color:${colors.text};
     padding:10px;
     box-sizing:border-box;
 `;

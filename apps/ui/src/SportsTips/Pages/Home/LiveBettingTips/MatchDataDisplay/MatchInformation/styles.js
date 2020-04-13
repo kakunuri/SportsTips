@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import colors from "../../../../../colors";
 export const MatchInfoContainer = styled.div`
   margin: 10px 0px;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.background};
+  background-color: ${colors.primary};
+  color: ${colors.background};
   display: flex;
   padding: 15px;
   flex-direction: row;

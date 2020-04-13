@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import colors from "../../../../colors";
 
 export const Card = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ export const Bonus = styled.div`
 export const Join = styled.a`
   height: 35px;
   width: 90px;
-  background-color: #0e0d5c;
+  background-color: ${colors.primary};
   color: white;
   font-size: 20px;
   text-decoration: none;

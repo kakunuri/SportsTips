@@ -1,16 +1,12 @@
-import React,{useContext} from "react";
+import React from "react";
 import { TabsContainer, Tab } from "./styles";
-import { Context } from "../../../Store";
 
 function Tabs({ onClick, currentTab, setTab, tabs }) {
-
-  let { state } = useContext(Context);
   return (
-    <TabsContainer theme={state.theme}>
+    <TabsContainer>
       {tabs.map(tab => {
         return (
           <Tab
-            theme={state.theme}
             active={currentTab.value === tab.value}
             onClick={e => {
               if(onClick){

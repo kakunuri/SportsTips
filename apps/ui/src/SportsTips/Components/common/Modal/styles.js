@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../../../colors';
 export const ModalContainer = styled.div``;
 export const DarkBackground = styled.div`
     position:fixed;
@@ -14,6 +15,5 @@ export const PopupContainer = styled.div`
     height:50vh;
     left:25vw;
     width:50vw;
-    background-color:${({theme})=>theme.background};
-
+    background-color:${colors.background};
 `;

@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React  from "react";
 import { FooterContainer, Icon, Social, Text } from "./styles";
-import { Context } from "../../Store";
 import Instagram from "../../Resources/Social-logos/instagram-seeklogo.com 1.svg";
 import Facebook from "../../Resources/Social-logos/Vector.svg";
 export default function Footer() {
-  let { state } = useContext(Context);
-
   return (
-    <FooterContainer theme={state.theme}>
+    <FooterContainer>
       <Social>
         <Text>Connect with us on :</Text>
         <Icon src={Instagram}></Icon>

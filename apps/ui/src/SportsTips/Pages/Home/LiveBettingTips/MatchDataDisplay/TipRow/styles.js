@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../../../../colors";
 
 const colorMap = {
   Success: "good",
@@ -6,8 +7,8 @@ const colorMap = {
   Pending: "pending",
 };
 export const TipContainer = styled.div`
-    color:${({ theme, status }) => theme[colorMap[status]]}
-    border-color:${({ theme, status }) => theme[colorMap[status]]};
+    color:${({ status }) => colors[colorMap[status]]}
+    border-color:${({ status }) => colors[colorMap[status]]};
     border-width:1px;
     border-style:solid;
     margin: 7px 0px;
@@ -22,7 +23,7 @@ export const Sport = styled.img`
 `;
 export const Text = styled.div`
     margin-left:2%;
-    color${({ theme }) => theme.text};
+    color${colors.text};
     width:65%;
 `;
 export const Site = styled.img`
@@ -37,6 +38,6 @@ export const Odds = styled.div`
 `;
 export const Timestamp = styled.div`
   width: 15%;
-  color: ${({ theme }) => theme.text};
+  color: ${colors.text};
 `;
 export const Status = styled.div``;

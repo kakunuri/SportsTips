@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   MatchCardContainer,
   MatchImage,
@@ -7,13 +7,11 @@ import {
   MatchVs,
   MatchDate,
 } from "./styles";
-import { Context } from "../../../../Store";
 function MatchCard({ match }) {
-  const { state } = useContext(Context);
   return (
-    <MatchCardContainer theme={state.theme}>
+    <MatchCardContainer>
       <MatchImage src={match.image} />
-      <MatchDetail theme={state.theme}>
+      <MatchDetail>
         <MatchName>{match.name}</MatchName>
         <MatchVs>{match.vs}</MatchVs>
         <MatchDate>{match.timestamp}</MatchDate>
