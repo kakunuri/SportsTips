@@ -14,7 +14,7 @@ function RGBToHex(r,g,b) {
  }
 
 export function getColor(){
-   return RGBToHex((Date.now()+212)%210,(Date.now()+175)%210,(Date.now()+55)%210);
+   return "#00756E";//RGBToHex(18,50,71);
 }
 setInterval(()=>{
   colors.primary=getColor();
