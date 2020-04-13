@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import colors from "../../../../colors";
+import fonts from "../../../../fonts";
 
 export const MatchCardContainer = styled.div`
   min-width: calc(25% - 15px);
   max-width: calc(25% - 15px);
-  border: solid 1px ${colors.border};
   display: inline-block;
   margin: 5px;
 `;
@@ -17,15 +17,19 @@ export const MatchDetail = styled.div`
   color: ${colors.background};
   padding: 10px;
   box-sizing: border-box;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
 `;
 export const MatchName = styled.div`
   font-size: 12px;
-  font-weight: bold;
+  ${fonts.label}
 `;
 export const MatchVs = styled.div`
   font-size: 18px;
+  ${fonts.heading}
 `;
 export const MatchDate = styled.div`
-  font-size: 13px;
+  font-size: 12px;
   text-align: right;
+  ${fonts.date}
 `;

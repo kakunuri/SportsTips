@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "../../../colors";
+import fonts from "../../../fonts";
 export const UpcomingMatchesContainer = styled.div``;
 export const UpcomingMatchesHeader = styled.div`
   padding: 25px 0px 15px 0px;
@@ -10,9 +11,11 @@ export const UpcomingMatchesHeader = styled.div`
 `;
 export const Title = styled.div`
   font-size: 18px;
+  ${fonts.heading}
 `;
 export const ViewAll = styled.div`
   color:${colors.primary}
+  ${fonts.link}
 `;
 export const MatchCardsContainer = styled.div`
   width: 100%;

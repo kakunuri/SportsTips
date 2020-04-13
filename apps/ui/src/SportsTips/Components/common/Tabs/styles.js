@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import colors from "../../../colors";
+import fonts from "../../../fonts";
 
 export const TabsContainer = styled.div`
   display: flex;
-  background-color: ${colors.primary};
+  background-color: ${colors.primary}dd;
   box-shadow: 0px 1px 4px 0px #0004;
 `;
 export const Tab = styled.div`
@@ -12,4 +13,5 @@ export const Tab = styled.div`
     background-color:${({ active }) =>
       active ? colors.background : colors.primary}
     cursor:pointer;
+    ${fonts.link}
 `;
