@@ -14,23 +14,22 @@ import { getLiveBettingTips } from "./service";
 import { prepareTabOption, prepareTabOptions } from "./utils";
 function LiveBettingTips() {
   const [liveBettingTipsData, setLiveBettingTipsData] = useState({});
-  const [currentMatch,setCurrentMatch] = useState("");
+  const [currentMatch, setCurrentMatch] = useState("");
   function dataPolling() {
     getLiveBettingTips().then((data) => {
       setLiveBettingTipsData(data);
-      if(currentMatch===""){
-        setCurrentMatch(Object.keys(data)[0])
-      }
-      else{
+      if (currentMatch === "") {
+        setCurrentMatch(Object.keys(data)[0]);
+      } else {
         setTimeout(() => {
-            dataPolling();
-          }, 1000);
+          dataPolling();
+        }, 1000);
       }
     });
   }
-  useEffect(()=>{
-      dataPolling();
-  },[currentMatch])
+  useEffect(() => {
+    dataPolling();
+  }, [currentMatch]);
   if (liveBettingTipsData === {} || currentMatch === "") {
     return <Loader />;
   }
@@ -44,14 +43,14 @@ function LiveBettingTips() {
         <ViewAll>View All ></ViewAll>
       </Header>
       <BettingTipsSection>
-      <Tabs
-        currentTab={prepareTabOption(currentMatch)}
-        tabs={prepareTabOptions(Object.keys(liveBettingTipsData))}
-        setTab={(newTab)=>{
+        <Tabs
+          currentTab={prepareTabOption(currentMatch)}
+          tabs={prepareTabOptions(Object.keys(liveBettingTipsData))}
+          setTab={(newTab) => {
             setCurrentMatch(newTab.value);
-        }}
-      />
-      <MatchDataDisplay data={liveBettingTipsData[currentMatch]}/>
+          }}
+        />
+        <MatchDataDisplay data={liveBettingTipsData[currentMatch]} />
       </BettingTipsSection>
     </LiveBettingTipsContainer>
   );

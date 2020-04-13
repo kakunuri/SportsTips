@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../../../../colors";
 
 export const HeaderContainer = styled.div`
   margin: 1px;
@@ -6,6 +7,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   font-size: 10px;
   align-items: center;
+  color:${colors.primary};
 `;
 export const Sport = styled.div`
   width: 35px;

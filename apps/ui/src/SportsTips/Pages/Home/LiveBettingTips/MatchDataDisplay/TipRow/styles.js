@@ -11,6 +11,7 @@ export const TipContainer = styled.div`
     border-color:${({ status }) => colors[colorMap[status]]};
     border-width:1px;
     border-style:solid;
+    background-color:${colors.background};
     margin: 7px 0px;
     padding:5px;
     display:flex;

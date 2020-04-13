@@ -2,12 +2,17 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import colors from "../../colors";
 export const HeaderContainer = styled.div`
+  z-index: 10;
   color: ${colors.background};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
 `;
 
 export const PrimaryLine = styled.div`
   height: 50px;
-  background-color: ${colors.primary};
+  background-color: ${colors.primary}dd;
   display: flex;
   justify-content: space-between;
   align-items: center;

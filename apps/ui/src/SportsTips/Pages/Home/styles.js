@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../colors";
 
 export const PrimaryContainer = styled.div`
   display: flex;
@@ -10,7 +11,4 @@ export const PrimaryContainer = styled.div`
 `;
 
 export const HomeContainer = styled.div`
-  margin-top:2%
-  width: 90%;
-  margin-left: 5%;
 `;

@@ -28,5 +28,6 @@ export const ViewAll = styled.div`
 `;
 
 export const BettingTipsSection = styled.div`
-  border: 1px solid ${colors.border};
+  background-color:${colors.primary}11;
+  padding-bottom:10px;
 `;

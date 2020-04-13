@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Card, Logo, Bonus, Join, Rating, Reviews } from "./styles";
+import React from "react";
+import { Card, Logo, CardSection,Header,Value,Data, Join, Reviews } from "./styles";
 
 const BettingSiteCard = ({ logo, bonus, rating, join, review }) => {
   return (
@@ -7,20 +7,17 @@ const BettingSiteCard = ({ logo, bonus, rating, join, review }) => {
       <a href={join}>
         <Logo src={logo}></Logo>
       </a>
-      <Bonus>
-        <b>Bonus</b>
-
-        <br></br>
-        {bonus}
-      </Bonus>
-      <Rating>
-        <b>Rating</b>
-        <br></br>
-        <br></br>
-        {rating}/5
-      </Rating>
-      <Join href={join}>JOIN</Join>
-      <Reviews to="reviews">Read Reviews ></Reviews>
+      <CardSection>
+        <Data><Header>Bonus</Header>
+        <Value>{bonus}</Value></Data>
+        <Data>
+        <Header>Rating</Header>
+        <Value>{rating}/5</Value></Data>
+      </CardSection>
+      <CardSection>
+        <Join href={join}>JOIN</Join>
+        <Reviews to="reviews">Read Reviews ></Reviews>
+      </CardSection>
     </Card>
   );
 };
