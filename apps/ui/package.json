@@ -41,7 +41,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "firebase deploy"
+      "pre-push": "npm run build;firebase deploy"
     }
   }
 }
