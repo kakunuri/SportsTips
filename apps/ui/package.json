@@ -37,5 +37,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^1.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run build;firebase deploy"
+    }
   }
 }
