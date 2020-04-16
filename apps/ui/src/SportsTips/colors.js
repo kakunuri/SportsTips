@@ -14,7 +14,7 @@ function RGBToHex(r,g,b) {
  }
 
 export function getColor(){
-   return RGBToHex(Date.now()%200,(Date.now()+83)%200,(Date.now()+159)%200);
+   return "#00756E";//RGBToHex(18,50,71);
 }
 setInterval(()=>{
   colors.primary=getColor();
@@ -24,8 +24,8 @@ var colors={
     text:"#333",
     background: "#fff",
     border:"#ccc",
-    good:"#0D5C10",
+    good:"#009C00",
     bad:"#CA0D0D",
-    pending:"#FF7A00"
+    pending:"#cc0"
 }
 export default colors;

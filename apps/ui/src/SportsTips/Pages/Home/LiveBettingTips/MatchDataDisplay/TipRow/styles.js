@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "../../../../../colors";
+import fonts from "../../../../../fonts";
 
 const colorMap = {
   Success: "good",
@@ -24,8 +25,9 @@ export const Tooltip = styled.div`
 `;
 export const TipContainer = styled.div`
     color:${({ status }) => colors[colorMap[status]]}
-    border-color:${({ status }) => colors[colorMap[status]]};
+    border-color:${({ status }) => colors[colorMap[status]]}55;
     border-width:1px;
+    border-radius:5px;
     border-style:solid;
     background-color:${colors.background};
     margin: 7px 0px;
@@ -42,6 +44,7 @@ export const Text = styled.div`
     margin-left:2%;
     color${colors.text};
     width:65%;
+    ${fonts.text}
 `;
 export const Site = styled.img`
   height: 35px;
@@ -52,12 +55,21 @@ export const Site = styled.img`
 `;
 export const Odds = styled.div`
   font-size: 18px;
+<<<<<<< HEAD
   font-weight: bold;
   width: 3%;
+=======
+  width:3%;
+>>>>>>> b85db80b14d641d23846e64642e2f3d7f472e847
   margin: 0px 2%;
+  ${fonts.bold}
 `;
 export const Timestamp = styled.div`
   width: 15%;
   color: ${colors.text};
+  font-size:12px;
+  ${fonts.date}
 `;
-export const Status = styled.div``;
+export const Status = styled.div`
+  ${fonts.bold}
+`;

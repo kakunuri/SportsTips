@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import colors from "../../colors";
+import fonts from "../../fonts";
 export const HeaderContainer = styled.div`
   z-index: 10;
   color: ${colors.background};
@@ -33,11 +34,11 @@ export const AppName = styled(Link)`
   align-items: flex-end;
   color: ${colors.background};
 
-  font-size: 18px;
+  font-size: 24px;
   padding-right: 20px;
-  margin-top: 3px;
   color: ${colors.background};
   text-decoration: none;
+  ${fonts.heading}
 `;
 export const MenuOptions = styled.div`
   color: ${colors.background};
@@ -54,6 +55,7 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   color: ${colors.background};
   margin: 0px 20px;
+  ${fonts.link}
 `;
 export const Actions = styled.div`
   display: flex;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import colors from "../../../../colors";
+import fonts from "../../../../fonts";
 
 export const Card = styled.div`
   padding: 10px;
@@ -34,11 +35,12 @@ export const Data = styled.div`
 export const Header = styled.div`
   margin-right: 20px;
   font-size: 13px;
-  font-weight:bold;
+  ${fonts.label}
   width:20%;
 `;
 export const Value = styled.div`
   font-size: 15px;
+  ${fonts.normal}
   width:80%;
 `;
 
@@ -50,9 +52,11 @@ export const Join = styled.a`
   padding: 7px 20px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
+  ${fonts.link}
 `;
 export const Reviews = styled(Link)`
   text-decoration: none;
   color:${colors.primary};
   font-size:12px;
+  ${fonts.label}
 `;

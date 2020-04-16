@@ -7,4 +7,5 @@ export const BettingScroll = styled.div`
   padding:5px;
   box-shadow:inset 0px 0px 4px 2px #1112;
   background-color: ${colors.primary}22;
+  border:solid 2px ${colors.primary}33;
 `;
