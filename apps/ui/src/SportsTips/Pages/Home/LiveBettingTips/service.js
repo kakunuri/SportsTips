@@ -8,24 +8,33 @@ const mockData = {
     tips: [
       {
         tip: "Total runs in over 7 > 7.5 runs",
-        siteLogo: "",
+        siteLogo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         odds: "2.44",
         timestamp: "12:02:02pm 27/10/2020",
         status: "Success",
+        siteUrl:
+          "https://members.bet365.com/Members/Services/OpenAccount/?displaymode=Desktop",
       },
       {
         tip: "Total runs in over 7 > 7.5 runs",
-        siteLogo: "",
+        siteLogo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         odds: "2.44",
         timestamp: "12:02:02pm 27/10/2020",
         status: "Success",
+        siteUrl:
+          "https://members.bet365.com/Members/Services/OpenAccount/?displaymode=Desktop",
       },
       {
         tip: "Total runs in over 7 > 7.5 runs",
-        siteLogo: "",
+        siteLogo:
+          "https://pbs.twimg.com/profile_images/875372540885118976/hVI5lP67_400x400.jpg",
         odds: "2.44",
         timestamp: "12:02:02pm 27/10/2020",
         status: "Pending",
+        siteUrl:
+          "https://members.bet365.com/Members/Services/OpenAccount/?displaymode=Desktop",
       },
     ],
   },
