@@ -12,25 +12,26 @@ import {
 import MatchDataDisplay from "./MatchDataDisplay";
 import { getLiveBettingTips } from "./service";
 import { prepareTabOption, prepareTabOptions } from "./utils";
+const find = require("lodash.find");
 function LiveBettingTips() {
-  const [liveBettingTipsData, setLiveBettingTipsData] = useState({});
-  const [currentMatch, setCurrentMatch] = useState("");
+  const [liveBettingTipsData, setLiveBettingTipsData] = useState([]);
+  const [currentMatch, setCurrentMatch] = useState(null);
   function dataPolling() {
     getLiveBettingTips().then((data) => {
       setLiveBettingTipsData(data);
-      if (currentMatch === "") {
-        setCurrentMatch(Object.keys(data)[0]);
+      if (currentMatch === null) {
+        setCurrentMatch(data[0]);
       } else {
         setTimeout(() => {
           dataPolling();
-        }, 1000);
+        }, 20000);
       }
     });
   }
   useEffect(() => {
     dataPolling();
   }, [currentMatch]);
-  if (liveBettingTipsData === {} || currentMatch === "") {
+  if (liveBettingTipsData.length === 0 || currentMatch === null) {
     return <Loader />;
   }
   return (
@@ -45,12 +46,12 @@ function LiveBettingTips() {
       <BettingTipsSection>
         <Tabs
           currentTab={prepareTabOption(currentMatch)}
-          tabs={prepareTabOptions(Object.keys(liveBettingTipsData))}
+          tabs={prepareTabOptions(liveBettingTipsData)}
           setTab={(newTab) => {
-            setCurrentMatch(newTab.value);
+            setCurrentMatch(find(liveBettingTipsData, { match: newTab.label }));
           }}
         />
-        <MatchDataDisplay data={liveBettingTipsData[currentMatch]} />
+        <MatchDataDisplay data={currentMatch} />
       </BettingTipsSection>
     </LiveBettingTipsContainer>
   );

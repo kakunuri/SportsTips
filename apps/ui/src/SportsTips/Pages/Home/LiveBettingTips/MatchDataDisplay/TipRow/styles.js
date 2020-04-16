@@ -3,9 +3,9 @@ import colors from "../../../../../colors";
 import fonts from "../../../../../fonts";
 
 const colorMap = {
-  Success: "good",
-  Failure: "bad",
-  Pending: "pending",
+  success: "good",
+  failure: "bad",
+  pending: "pending",
 };
 export const Tooltip = styled.div`
   visibility: visible;

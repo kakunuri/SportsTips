@@ -1,11 +1,11 @@
 import React from "react";
 import { MatchInfoContainer, MatchName, MatchVs, MatchScore } from "./styles";
-function MatchInformation({ data }) {
+function MatchInformation({ series, vs }) {
   return (
     <MatchInfoContainer>
-      <MatchName>{data.name}</MatchName>
-      <MatchVs>{data.vs}</MatchVs>
-      <MatchScore>{data.score}</MatchScore>
+      <MatchName>{series}</MatchName>
+      <MatchVs>{vs}</MatchVs>
+      <MatchScore></MatchScore>
     </MatchInfoContainer>
   );
 }

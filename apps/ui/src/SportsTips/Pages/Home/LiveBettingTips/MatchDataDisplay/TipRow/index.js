@@ -11,16 +11,16 @@ import {
 } from "./styles";
 function TipRow({ tip }) {
   return (
-    <TipContainer status={tip.status}>
+    <TipContainer status={tip.result}>
       <Sport src={tip.sportImage} />
       <Text>{tip.tip}</Text>
-      <a href={tip.siteUrl}>
+      <a href={tip.bettingSite}>
         <Site src={tip.siteLogo} />
         <Tooltip>Click here to join</Tooltip>
       </a>
       <Odds>{tip.odds}</Odds>
-      <Timestamp>{tip.timestamp}</Timestamp>
-      <Status>{tip.status}</Status>
+      <Timestamp>{tip.insertDateTime._seconds}</Timestamp>
+      <Status>{tip.result}</Status>
     </TipContainer>
   );
 }
