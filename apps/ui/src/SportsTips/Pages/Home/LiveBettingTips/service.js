@@ -128,5 +128,6 @@ export function getLiveBettingTips() {
     })
     .catch((err) => {
       console.log("Error", err);
+      throw err;
     });
 }
