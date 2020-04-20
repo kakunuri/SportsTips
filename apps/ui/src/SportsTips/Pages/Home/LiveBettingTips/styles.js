@@ -29,6 +29,9 @@ export const Logo = styled.div`
 export const ViewAll = styled.div`
   color: ${colors.primary};
   ${fonts.link}
+  :hover{
+    cursor:pointer;
+  }
 `;
 
 export const BettingTipsSection = styled.div`

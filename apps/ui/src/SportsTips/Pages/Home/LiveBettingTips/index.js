@@ -79,7 +79,6 @@ function LiveBettingTips() {
           tabs={prepareTabOptions(liveBettingTipsData)}
           setTab={(newTab) => {
             setCurrentMatch(newTab.value);
-            // setCurrentMatch(find(liveBettingTipsData, { match: newTab.label }));
           }}
         />
         <MatchDataDisplay data={currentMatch} />

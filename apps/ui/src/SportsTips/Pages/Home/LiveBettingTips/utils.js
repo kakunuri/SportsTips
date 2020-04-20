@@ -6,7 +6,11 @@ export function prepareTabOption(tab) {
     label: (
       <MatchLabel>
         <MatchName>{tab.match}</MatchName>
-        <NotificationChip>{tab.notifications}</NotificationChip>
+        {tab.notifications ? (
+          <NotificationChip>{tab.notifications}</NotificationChip>
+        ) : (
+          <div />
+        )}
       </MatchLabel>
     ),
     value: tab,
@@ -28,7 +32,7 @@ export function computeNotifications(newMatchData, oldMatchData) {
       ? correspondingOldMatch.tips.map((tip) => JSON.stringify(tip))
       : [];
     let newTipsCount = newTips.filter((tip) => oldTips.includes(tip)).length;
-    newMatch.notifications = newTipsCount + 1;
+    newMatch.notifications = newTipsCount;
     return newMatch;
   });
   return matchWithNotifications;
