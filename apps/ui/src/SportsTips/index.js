@@ -24,14 +24,8 @@ function SportsTips() {
       <Header />
       <AppBody>
         <Switch>
-          <Route path="/home" component={Home} />
+          <Route path="/" component={Home} />
           <Route path="/live-betting-tips" component={LiveBets} />
-          <Route
-            path="/"
-            component={() => {
-              return <Redirect to="/home" />;
-            }}
-          />
         </Switch>
       </AppBody>
       <Footer />
