@@ -12,7 +12,6 @@ import LiveBets from "./Pages/LiveBets";
 import Home from "./Pages/Home";
 import { Context } from "./Store";
 import { setProperty } from "./Store/engine/actions";
-import Menu from "./Components/Menu";
 function SportsTips() {
   const { dispatch } = useContext(Context);
   useEffect(() => {
@@ -36,7 +35,6 @@ function SportsTips() {
         </Switch>
       </AppBody>
       <Footer />
-      <Menu />
     </SportsTipsContainer>
   );
 }
