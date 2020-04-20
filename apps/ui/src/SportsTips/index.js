@@ -12,6 +12,8 @@ import LiveBets from "./Pages/LiveBets";
 import Home from "./Pages/Home";
 import { Context } from "./Store";
 import { setProperty } from "./Store/engine/actions";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 function SportsTips() {
   const { dispatch } = useContext(Context);
   useEffect(() => {
@@ -29,6 +31,7 @@ function SportsTips() {
         </Switch>
       </AppBody>
       <Footer />
+      <ToastContainer />
     </SportsTipsContainer>
   );
 }

@@ -11,30 +11,46 @@ import {
 } from "./styles";
 import MatchDataDisplay from "./MatchDataDisplay";
 import { getLiveBettingTips } from "./service";
-import { prepareTabOption, prepareTabOptions, computeNotifications } from "./utils";
-const find = require("lodash.find");
+import {
+  prepareTabOption,
+  prepareTabOptions,
+  computeNotifications,
+} from "./utils";
+import { notifyFailure } from "../../../Components/Notifications";
 function LiveBettingTips() {
   const [liveBettingTipsData, setLiveBettingTipsData] = useState([]);
   const [currentMatch, setCurrentMatch] = useState(null);
   function dataPolling() {
-    getLiveBettingTips().then((data) => {
-      let dataWithNotifications=computeNotifications(data,liveBettingTipsData);
-      setLiveBettingTipsData(dataWithNotifications);
-      if (currentMatch === null) {
-        setCurrentMatch(dataWithNotifications[0]);
-      } else {
+    getLiveBettingTips()
+      .then((data) => {
+        let dataWithNotifications = computeNotifications(
+          data,
+          liveBettingTipsData
+        );
+        setLiveBettingTipsData(dataWithNotifications);
+        if (currentMatch === null) {
+          setCurrentMatch(dataWithNotifications[0]);
+        } else {
+          setTimeout(() => {
+            dataPolling();
+          }, 1000);
+        }
+      })
+      .catch(() => {
+        notifyFailure("Failed to retrieve match details");
         setTimeout(() => {
           dataPolling();
-        }, 1000);
-      }
-    }).catch((err)=>{
-      console.error(err);
-    });
+        }, 100000);
+      });
   }
   useEffect(() => {
     dataPolling();
   }, []);
-  if (!liveBettingTipsData || liveBettingTipsData.length === 0 || currentMatch === null) {
+  if (
+    !liveBettingTipsData ||
+    liveBettingTipsData.length === 0 ||
+    currentMatch === null
+  ) {
     return <Loader />;
   }
   return (

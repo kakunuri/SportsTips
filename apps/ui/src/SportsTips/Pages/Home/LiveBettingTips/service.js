@@ -124,9 +124,5 @@ export function getLiveBettingTips() {
     .get("http://us-central1-ravi-e8d9a.cloudfunctions.net/app/sports/tips")
     .then((response) => {
       return response.data;
-    })
-    .catch((err) => {
-      console.log("Error", err);
-      throw err;
     });
 }
