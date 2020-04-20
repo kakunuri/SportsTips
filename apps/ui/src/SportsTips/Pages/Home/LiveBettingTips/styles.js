@@ -35,3 +35,25 @@ export const BettingTipsSection = styled.div`
   background-color:${colors.primary}11;
   padding-bottom:10px;
 `;
+
+export const MatchLabel=styled.div`
+  display:flex;
+  padding: 0px 5px;
+  justify-content:space-between;
+  align-items:center;
+`;
+export const MatchName=styled.div`
+  margin-right:20px;
+`;
+export const NotificationChip=styled.div`
+  color:${colors.background};
+  background-color:${colors.bad};
+  padding:3px;
+  border-radius:50%;
+  width:20px;
+  height:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+`;
