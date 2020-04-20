@@ -123,7 +123,6 @@ export function getLiveBettingTips() {
   return axios
     .get("http://us-central1-ravi-e8d9a.cloudfunctions.net/app/sports/tips")
     .then((response) => {
-      console.log("get request successful");
       return response.data;
     })
     .catch((err) => {

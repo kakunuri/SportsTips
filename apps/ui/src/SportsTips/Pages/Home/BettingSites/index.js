@@ -10,7 +10,7 @@ export default function BettingSites() {
       setSites(sitesList);
       setTimeout(() => {
         dataPolling();
-      }, 1000);
+      }, 20000);
     });
   }
   // });
