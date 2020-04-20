@@ -51,7 +51,18 @@ function LiveBettingTips() {
     liveBettingTipsData.length === 0 ||
     currentMatch === null
   ) {
-    return <Loader />;
+    return (
+      <LiveBettingTipsContainer>
+        <Header>
+          <Title>
+            <Logo />
+            Live betting tips
+          </Title>
+          <ViewAll>View All ></ViewAll>
+        </Header>
+        <Loader />
+      </LiveBettingTipsContainer>
+    );
   }
   return (
     <LiveBettingTipsContainer>
