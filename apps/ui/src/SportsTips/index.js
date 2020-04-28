@@ -14,6 +14,7 @@ import { Context } from "./Store";
 import { setProperty } from "./Store/engine/actions";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import Stats from "./Pages/Stats";
 function SportsTips() {
   const { dispatch } = useContext(Context);
   useEffect(() => {
@@ -26,8 +27,9 @@ function SportsTips() {
       <Header />
       <AppBody>
         <Switch>
-          <Route path="/" component={Home} />
           <Route path="/live-betting-tips" component={LiveBets} />
+          <Route path="/stats" component={Stats} />
+          <Route path="/" component={Home} />
         </Switch>
       </AppBody>
       <Footer />
