@@ -29,7 +29,7 @@ const mockData={
                     value:"1,034"
                 }
             ]
-        }
+        },
     ]
 }
 export function getSomeStats(){
