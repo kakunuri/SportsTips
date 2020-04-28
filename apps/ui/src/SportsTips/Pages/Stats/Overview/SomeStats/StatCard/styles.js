@@ -9,6 +9,8 @@ export const StatCardContainer = styled.div`
     align-items:center;
     justify-content:space-around;
     flex-direction:column;
+    box-shadow:inset 0px 0px 4px 2px #1112;
+    background-color: ${colors.primary}11;
 `;
 
 
