@@ -7,5 +7,6 @@ export const WeeklyStatsContainer = styled.div`
   border: solid 1px ${colors.primary};
   border-radius: 5px;
   box-sizing: border-box;
+  border-right-width:5px;
   padding: 20px;
 `;
