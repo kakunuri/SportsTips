@@ -4,7 +4,7 @@ import Tabs from "../../Components/common/Tabs";
 import { statsTabs } from "./constants";
 
 function Stats(props) {
-  const [currentTab, setCurrentTab] = useState(statsTabs[1]);
+  const [currentTab, setCurrentTab] = useState(statsTabs[0]);
   return (
     <StatsContainer>
       <Tabs tabs={statsTabs} setTab={setCurrentTab} currentTab={currentTab} />

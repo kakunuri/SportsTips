@@ -1,3 +1,5 @@
 import styled from "styled-components";
 
-export const LiveMatchesContainer = styled.div``;
+export const LiveMatchesContainer = styled.div`
+    padding-top:40px;
+`;
