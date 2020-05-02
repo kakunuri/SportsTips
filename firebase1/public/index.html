@@ -36,15 +36,28 @@
   </head>
   <body>
 
-    <!-- <button onclick="googleLogin()">
+    <button onclick="googleLogin()">
       Login with google
-    </button> -->
+    </button>
 
-    <h1 id="title">sddfdvc</h1>
+    <h1>sddfdvc</h1>
     <!-- <input onchange="updatePost(event)"> -->
-    <script src="app.js">
+    <script >
     
+    function googleLogin(){
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider)
+    .then(result => {
+        const user = result.user;
+        document.write(`Hello ${JSON.stringify(user.metadata)}`);
+        document.write(`Hello ${JSON.stringify(result.additionalUserInfo)}`);
+        console.log(result)
+    })
+}
+
       </script>
+      
     <!-- <div id="message">
       <h2>Welcome</h2>
       <h1>Firebase Hosting Setup Complete</h1>

@@ -1,66 +1,86 @@
 const functions = require('firebase-functions');
 const express = require('express');
-
-
-
 const app = express();
-
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
 
 const admin = require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
+
+// var config = {
+//     apiKey:"AIzaSyBxuuuWKCaVkFSpiuk-vYpZNymN10EyzWE",
+//     authDomain:"ravi-e8d9a.firebaseapp.com",
+//     databaseUrl:"https://ravi-e8d9a.firebaseio.com"
+// }
+// admin.initializeApp(config);
+
+
 const db = admin.firestore()
 const cors = require('cors')({origin: true});
-// var isJsonEqual = require('lodash.isequal');
-var deepEqual = require('deep-equal');
-// var moment = require('moment');
-const moment = require('moment-timezone');
 app.use(cors);
+var deepEqual = require('deep-equal');
+const moment = require('moment-timezone');
 const { check, validationResult } = require('express-validator');
 
-
-const Busboy = require('busboy');
-const fs = require('fs');
-
-  
-
-
+//File Upload
 const {Storage} = require('@google-cloud/storage');
 const gcs = new Storage({
     projectId: "ravi-e8d9a",
     keyFilename: "ravi-e8d9a-firebase-adminsdk-hb9yi-0ab1e84dc7.json"
 
 });
+var bucketName = 'gs://ravi-e8d9a.appspot.com'
+var bucket = gcs.bucket(bucketName);
+const Busboy = require('busboy');
+const os = require("os");
+const fs = require('fs');
+const path = require("path");
 
-const Multer = require('multer');
-const bucket = gcs.bucket("ravi-e8d9a.appspot.com");
-const multer = Multer({
-    storage: Multer.memoryStorage(),
-    limits: {
-      fileSize: 5 * 1024 * 1024 // no larger than 5mb, you can change as needed.
-    }
-  });
 
-  var fileupload = require('express-fileupload');
-app.use(fileupload());
-
-  const path = require("path");
-  const os = require("os");
-
-exports.updateFields = functions.firestore.document('product/{productId}').onUpdate((change, event) =>{
-    const docId = event.params.productId;
-    const productRef = admin.firestore().collection('product').doc(docId);
+// exports.updateFields = functions.firestore.document('product/{productId}').onUpdate((change, event) =>{
+//     const docId = event.params.productId;
+//     const productRef = admin.firestore().collection('product').doc(docId);
    
-    const after = change.after.data();
-    const createdData = after.name;
-    console.log(createdData);
-    return productRef.update({message:`hii  ${createdData}  c x`});
+//     const after = change.after.data();
+//     const createdData = after.name;
+//     console.log(createdData);
+//     return productRef.update({message:`hii  ${createdData}  c x`});
+    
+// })
+
+
+exports.updateFields = functions.firestore.document('bettingTips/{matchId}').onUpdate(async(change, event) =>{
+    const docId = event.params.matchId;
+    const matchData = change.after.data();
+    let profitPercentage=0;
+    let success=0,failure=0,pending=0;
+    for(tip in matchData.tips){
+        profitPercentage += ((matchData.tips[tip].odds)-1) * (matchData.tips[tip].result==='success'?1:(matchData.tips[tip].result==='failure'?-1:0))*100;
+        if(matchData.tips[tip].result==='success') success++;
+        if(matchData.tips[tip].result==='failure') failure++;
+        if(matchData.tips[tip].result==='pending') pending++;
+    }
+    let winPercentage = ((success+failure)!==0)?(success*100)/(success+failure):0;
+    console.log(winPercentage,success,failure);
+    statsData = {
+        "totalTips" : (success+failure+pending),
+        "successfulTips" : success,
+        "failure" : failure,
+        "pending"  : pending,
+        "profitPercentage" : profitPercentage,
+        "win" : winPercentage,
+        "date" : matchData.startDateTime
+    }
+    const statsRef = admin.firestore().collection('stats').doc(docId);
+    const matchStats1 = await statsRef.get()
+    const matchStats = matchStats1.data();
+    if(matchStats === undefined){
+        return statsRef.create(statsData)
+    }
+    else{
+        return statsRef.update(statsData)
+
+    }
+
+    // return productRef.update({message:`hii  ${createdData}  c x`});
     
 })
 
@@ -82,25 +102,17 @@ exports.updateFields = functions.firestore.document('product/{productId}').onUpd
 //     });
 
 
-exports.getMethod = functions.https.onRequest((req,res) => {
-    console.log(req.query.name)
-    var s ='';
-    for (const key in req.query){
-        console.log(req.query[key]) ;
-        console.log(req.query);
-        console.log(req.query.name);
-    }
+// exports.getMethod = functions.https.onRequest((req,res) => {
+//     console.log(req.query.name)
+//     var s ='';
+//     for (const key in req.query){
+//         console.log(req.query[key]) ;
+//         console.log(req.query);
+//         console.log(req.query.name);
+//     }
     
-    res.send(req.query.name)
-})
-
-
-// exports.testMethod = functions.https.onRequest((req,res) => {
-    
-//     res.send(req.files.image);
+//     res.send(req.query.name)
 // })
-
-
 
 app.get('/sports/tips',async(req,res)=>{
     try{
@@ -131,10 +143,6 @@ app.get('/sports/tips',async(req,res)=>{
                         let fieldList = ['lastModified', 'startDateTime'];
                         for(field in fieldList){
                             matchData[fieldList[field]] = matchData[fieldList[field]].toDate();
-
-                            
-
-
                             // if(['lastModified', 'startDateTime'].includes(field)){
                             //     matchData[field] = matchData[field].toDate();
                             // }
@@ -153,7 +161,7 @@ app.get('/sports/tips',async(req,res)=>{
                             if(matchData.tips[tip].result==='pending') pending++;
                         }
                         matchData['net'] = net;
-                        matchData['winPercentage']=(success*100)/(success+failure);
+                        matchData['winPercentage']=((success+failure)!==0)?(success*100)/(success+failure):0;
                         list.push(matchData);
                     })
                     return list;
@@ -685,16 +693,14 @@ app.put('/images/:typeId/:imageId',(req, res) => {
             if(imagesData !== undefined){
                 delete imagesData.image;
                 delete imagesData.type;
-                if(!deepEqual(bookmakerData,req.body)){
-                    return res.status(409).send({"message":`Match with matchId:${docId} already present.`});
+                if(!deepEqual(imagesData,req.body)){
+                    return res.status(409).send({"message":`Image with imageId:${docId} already present.`});
                 }
                 else{
                     imagesData.image = req.params.imageId;
                     imagesData.type = req.params.typeId;
                     return res.status(200).send(imagesData);
                 }
-                // throw new Error(`Match with matchId:"${docId}" not found.`);
-                
             }
             let doc = {
                 type:req.params.typeId,
@@ -716,7 +722,7 @@ app.put('/images/:typeId/:imageId',(req, res) => {
 
 
 
-app.patch('/images/typeId/:typeId/imageId/:imageId',(req, res) => {
+app.patch('/images/typeId/:typeId/imageId/:imageId',(req, res) => {   // code is copy of bookmaker...needs to be edited. Patch api was not mentioned in the doc.
     (async () => {
         try{
             let docId = req.params.typeId;
@@ -724,7 +730,7 @@ app.patch('/images/typeId/:typeId/imageId/:imageId',(req, res) => {
             const imagesData = images.data();
             let imagesJson = {}
             if(imagesData===undefined){
-                throw new Error(`Bookmaker with bookmakerId:"${docId}" not found.`);
+                throw new Error(`Image with ImageId:"${docId}" not found.`);
             }
             else{
                 
@@ -766,70 +772,6 @@ app.patch('/images/typeId/:typeId/imageId/:imageId',(req, res) => {
 
 
 
-exports.uploadFile = functions.https.onRequest((req, res) => {
-//   return cors(req, res, () => {
-        console.log('hii');
-      if (req.method !== "POST") {
-        return res.status(500).send("not allowed");
-      }
-      var busboy = new Busboy({ headers: req.headers});
-      let uploadData = null;
-  
-      busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-          
-        const filepath = path.join(os.tmpdir(),filename);
-        console.log(filename);
-        console.log(filepath);
-        uploadData = { file: filepath, type: mimetype };
-        file.pipe(fs.createWriteStream(filepath));
-      });
-  
-      busboy.on("finish", () => {
-        //   console.log( firebase
-        //     .storage()
-        //     .ref()
-        //     .child('s3.jpeg'));
-        //     console.log('k');
-        // const bucket = gcs.bucket("ravi-e8d9a.appspot.com");
-        // bucket
-        //   .upload(uploadData.file, {
-        //     uploadType: "media",
-        //     metadata: {
-        //       metadata: {
-        //         contentType: uploadData.type
-        //       }
-        //     }
-        //   })
-        var storage = firebase.storage();
-        var storageRef = firebase.storage().ref();
-        firebase.storage().ref().put(file)
-    .then(snapshot => {
-        return res.status(200).send({ message: "It worked!"
-            });
-        // console.log('Uploaded.');
-    })
-        //   .then(() => {
-        //     return res.status(200).send({
-        //       message: "It worked!"
-        //     });
-        //   })
-          .catch(err => {
-            return res.status(500).send({
-              error: err
-            });
-          });
-      });
-      busboy.end(req.rawBody);
-      return res.status(200).send({
-        message: "It has worked!","body": req.body
-      });
-
-//    });
-//    return res.send("File uploaded successfully");
-  });
-
-
-
 
 
 
@@ -857,49 +799,138 @@ console.log( moment.utc(z).tz( 'Asia/Calcutta').format('DD/MM/YYYY HH:mm:ss') );
     })();
 
 });
-var methodOverride = require('method-override');
-var bodyParser = require('body-parser');
-// Body Parser middleware
-app.use(bodyParser.urlencoded({extended: false}));
-// parse application/json
-app.use(bodyParser.json());
-app.use(bodyParser({uploadDir:'./public/product_images', keepExtensions: true }));
-app.use(methodOverride()); 
 
-app.post('/upload-avatar', async (req, res) => {
-    console.log(req);
-    console.log(req.file);
-    console.log(req.files);
-    console.log(req.files.image);
 
-    try {
-        if(!req.files) {
-            res.send({
-                status: false,
-                message: 'No file uploaded'
-            });
-        } else {
-            //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
-            let avatar = req.files.avatar;
-            
-            //Use the mv() method to place the file in upload directory (i.e. "uploads")
-            avatar.mv('./uploads/' + avatar.name);
 
-            //send response
-            res.send({
-                status: true,
-                message: 'File is uploaded',
-                data: {
-                    name: avatar.name,
-                    mimetype: avatar.mimetype,
-                    size: avatar.size
+
+  app.post('/images/:typeId/:imageId/:size', async(req, res, next) => {
+  
+    var imageToBeUploaded = {};
+    var imageFileName;
+    var signedURL;
+    
+    //   console.log(req.params);
+    //   console.log(req.params.imageId);
+    //   console.log(req.params.size);
+      
+    //   console.log(imageFileName);
+    const busboy = new Busboy({ headers: req.headers });
+
+    busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
+
+      if (mimetype !== "image/jpeg" && mimetype !== "image/png") {
+        return res.status(400).json({ error: "Wrong file type submitted" });
+      }
+      var imageExtension = filename.split(".")[filename.split(".").length - 1];
+      imageFileName = req.params.imageId+"-"+req.params.size+"."+imageExtension;
+      const filepath = path.join(os.tmpdir(), imageFileName);
+      imageToBeUploaded = { filepath, mimetype };
+      file.pipe(fs.createWriteStream(filepath));
+      return imageExtension;
+    });
+
+    
+    busboy.on("finish", () => {
+        var destination = bucket.file(req.params.typeId+"/"+imageFileName);
+        admin.storage().bucket()
+        .upload(imageToBeUploaded.filepath, {
+          destination:destination,
+          resumable: false,
+          metadata: {
+            metadata: {
+              contentType: imageToBeUploaded.mimetype
+            },
+          }
+        })
+        .then(() => {
+            CONFIG = {                                                                      
+                action: 'read',                                                               
+                expires: '03-01-2500',                                                        
+              };                                                                              
+              signedURL = destination.getSignedUrl(CONFIG, (err,url) => {                                  
+                if (err) {
+                    console.error(err);
+                    return err;
+                  } else {
+                    // console.log(url);
+                    return url;
+                  }                                                        
+              }).get();      
+              console.log(signedURL);
+            // console.log(destination.getSignedUrl());
+          // Append token to url
+        //   const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${imageFileName}?alt=media&token=${generatedToken}`;
+          return res.status(200).send(signedURL);//db.doc(`/users/${req.user.handle}`).update({ imageUrl });
+        })
+        .catch((err) => {
+          console.error(err);
+          return res.status(500).send({ error: "something went wrong" });
+        });
+    // var bucket = gcs.bucket('gs://ravi-e8d9a.appspot.com');
+    // var destination = bucket.file('test/test.png');
+    // var localFilename = 'chandan1.png';
+    // bucket.upload(imageToBeUploaded.filepath, { public: true, destination: destination },function(err, file) {
+    //   if (!err) {
+    //     console.log(`${localFilename} is now in your bucket`);
+    //   } else {
+    //     console.log('Error uploading file: ' + err);
+    //   }
+    // });
+    });
+    busboy.end(req.rawBody);
+    return res.status(200).send(signedURL); 
+
+  })
+
+
+
+
+app.put('/user/:userEmail',(req, res) => {
+
+    (async () => {
+        try {
+            let docId = req.params.userEmail;
+            let user = await db.collection('userInfo').doc(docId).get();
+            const userData = user.data();
+            if(userData !== undefined){
+                console.log(userData);
+                console.log(req.body);
+                var loginCount = userData.metadata.loginCount;
+                delete userData.metadata.loginCount
+                if(!deepEqual(userData,req.body)){
+                    console.log('not same')
+                    if(!deepEqual(userData.metadata,req.body.metadata)){
+                    req.body.metadata.loginCount = loginCount+1 ;
+                    await db.collection('userInfo').doc(docId).update({'metadata':req.body.metadata});
+                    return res.status(200).send(req.body);
+                    }
+                    else{
+                        userData.metadata.loginCount = loginCount;
+                        return res.status(200).send(userData);
+                    }
+                    // return res.status(409).send({"message":`User with userId:${docId} already present.`});
                 }
-            });
+                else{
+                    console.log('same')
+                    userData.metadata.loginCount = loginCount;
+                    return res.status(200).send(userData);
+                }
+            }
+            console.log('user undefined');
+            let doc = {}
+            for(field in req.body){
+                doc[field] = req.body[field];
+            }
+            req.body.metadata.loginCount=1;
+            await db.collection('userInfo').doc(docId).create(doc)
+            return res.status(200).send(doc);
         }
-    } catch (err) {
-        res.status(500).send(err);
-    }
-});
+        catch(e) {
+            console.log(e);
+            return res.status(400).send({"message":e.message});
+        }
+    })();
 
+});
 
 exports.app = functions.https.onRequest(app);
