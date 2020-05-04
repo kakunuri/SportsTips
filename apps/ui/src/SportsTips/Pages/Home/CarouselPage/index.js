@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   MDBCarousel,
   MDBCarouselInner,
@@ -8,6 +8,7 @@ import {
 } from "mdbreact";
 import { Container, CarouselImage } from "./styles";
 import { getCarouselImages } from "./service";
+import { Context } from "../../../Store";
 // function importAll(r) {
 //   return r.keys().map(r);
 // }
@@ -23,19 +24,22 @@ import { getCarouselImages } from "./service";
 // import Images from "../../Resources/carousel-Images/IMAGE-1.png";
 
 const CarouselPage = () => {
+  const { state } = useContext(Context);
+  // console.log("////////", state.images.bookmaker);
   const [images, setImages] = useState([]);
   function dataPolling() {
     getCarouselImages().then((imagesList) => {
       setImages(imagesList);
       setTimeout(() => {
         dataPolling();
-      }, 1000);
+      }, 5000);
     });
   }
   // });
 
   useEffect(() => {
     dataPolling();
+    // setImages(state.images.carousel);
   }, []);
   return (
     <Container>

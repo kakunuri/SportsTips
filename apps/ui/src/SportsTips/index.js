@@ -12,14 +12,21 @@ import LiveBets from "./Pages/LiveBets";
 import Home from "./Pages/Home";
 import { Context } from "./Store";
 import { setProperty } from "./Store/engine/actions";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { setImages } from "./Store/images/actions";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 function SportsTips() {
   const { dispatch } = useContext(Context);
   useEffect(() => {
     dispatch(
       setProperty("device", window.height > window.width ? "mobile" : "desktop")
     );
+    setImages(dispatch, "bookmaker");
+    // setImages(dispatch, "news");
+    // setImages(dispatch, "upcomingmatches");
+    // setImages(dispatch, "carousel");
+    // setImages(dispatch, "socialNetworking");
+    // setImages(dispatch, "sportsIcons");
   }, []);
   return (
     <SportsTipsContainer>
