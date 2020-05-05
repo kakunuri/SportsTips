@@ -10,11 +10,13 @@ import {
 import { SportsTipsContainer, AppBody } from "./styles";
 import LiveBets from "./Pages/LiveBets";
 import Home from "./Pages/Home";
+import Review from "./Pages/review";
 import { Context } from "./Store";
 import { setProperty } from "./Store/engine/actions";
 import { setImages } from "./Store/images/actions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import Stats from "./Pages/Stats";
 function SportsTips() {
   const { dispatch } = useContext(Context);
   useEffect(() => {
@@ -33,8 +35,10 @@ function SportsTips() {
       <Header />
       <AppBody>
         <Switch>
-          <Route path="/" component={Home} />
           <Route path="/live-betting-tips" component={LiveBets} />
+          <Route path="/review" component={Review} />
+          <Route path="/stats" component={Stats} />
+          <Route path="/" component={Home} />
         </Switch>
       </AppBody>
       <Footer />
